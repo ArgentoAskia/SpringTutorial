@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 画图 -->
+
+    <!-- 自动注入：
+        autowire-candidate：true、false、default（true），是否作为候选bean
+        autowire：byName、byType、no、constructor，使用自动注入（针对自定义bean）
+        primary：true，false，自动注入首选的bean
+    -->
+
+    <bean id="birthday" class="java.util.Date"/>
+
+    <bean id="upload" class="java.time.LocalDateTime" factory-method="now"/>
+
+    <!-- 只要是带java.*开头的对象都没法使用autowire属性，貌似只有自定义的类才可以 -->
+    <!-- 下面的这个autowireUser的birthday和upload都是null -->
+    <bean id="autowiredUser" class="cn.argentoaskia.beans.User" autowire="byType" autowire-candidate="false">
+        <property name="id" value="2"/>
+        <property name="name" value="autowiredUser"/>
+    </bean>
+
+
+    <!-- autowire-candidate=false(默认：true)：这个bean不作为自动注入的候选 -->
+    <bean id="user" class="cn.argentoaskia.beans.User" autowire-candidate="false">
+        <property name="id" value="3"/>
+        <property name="name" value="user"/>
+        <property name="upload" ref="upload"/>
+        <property name="birthday" ref="birthday"/>
+    </bean>
+    <bean id="user2" class="cn.argentoaskia.beans.User">
+        <property name="id" value="4"/>
+        <property name="name" value="user2"/>
+        <property name="upload" ref="upload"/>
+        <property name="birthday" ref="birthday"/>
+    </bean>
+
+    <bean id="company" class="cn.argentoaskia.beans.Company">
+        <property name="birthday" ref="birthday"/>
+        <property name="id" value="10"/>
+        <property name="name" value="company"/>
+        <property name="times" value="5"/>
+    </bean>
+
+    <!-- primary=true(默认：false)：当存在多个符合的bean时，这个bean优先被选 -->
+    <bean id="company2" class="cn.argentoaskia.beans.Company" primary="true">
+        <property name="birthday" ref="birthday"/>
+        <property name="id" value="11"/>
+        <property name="name" value="company2"/>
+        <property name="times" value="5"/>
+    </bean>
+
+    <!-- byName根据Employee类的属性名，找对应的bean标签id来进行自动注入 -->
+    <bean id="employeeAutowiredByName" class="cn.argentoaskia.beans.Employee" autowire="byName"/>
+    <!-- byConstructor和byType注入一样，但是使用的是构造器进行依赖注入 -->
+    <!-- 可以尝试把构造方法public Employee(User user, Company company)去掉，你会发现字段全都变成null了 -->
+    <bean id="employeeAutowiredByConstructor" class="cn.argentoaskia.beans.Employee" autowire="constructor"/>
+    <!-- byType根据Employee类的属性名，找对应的bean标签id来进行自动注入 -->
+    <bean id="employeeAutoWiredByType" class="cn.argentoaskia.beans.Employee" autowire="byType"/>
+</beans>
