@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 方式1 -->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+        <!-- 可以补充相关的properties -->
+        <property name="properties">
+            <props>
+                <prop key="custom.strategy.class">com.something.DefaultStrategy</prop>
+                <prop key="driver.mysql">com.mysql.cj.jdbc.Driver</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 方式2 -->
+    <context:property-placeholder location="log4j.properties"/>
+
+    <bean id="url" class="java.net.URI" factory-method="create">
+        <constructor-arg type="java.lang.String" value="${url}"/>
+    </bean>
+
+    <bean id="jdbcBean" class="cn.argento.askia.beans.JdbcBean">
+        <property name="applicationDescription" value="${application.description}"/>
+        <property name="applicationName" value="${application.name}"/>
+        <property name="applicationPort" value="${application.port}"/>
+        <property name="className" value="${className}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <property name="maxMemory" value="${maxMemory}"/>
+        <property name="password" value="${password}"/>
+        <property name="minActive" value="${minActive}"/>
+        <property name="username" value="${username}"/>
+        <property name="timeout" value="${timeout}"/>
+        <property name="url" ref="url"/>
+    </bean>
+    <bean id="jdbcExtendsBean" class="cn.argento.askia.beans.JdbcExtendsBean" parent="jdbcBean">
+        <property name="customStrategyClass" value="${custom.strategy.class}"/>
+        <property name="driverMysql" value="${driver.mysql}"/>
+    </bean>
+
+</beans>
