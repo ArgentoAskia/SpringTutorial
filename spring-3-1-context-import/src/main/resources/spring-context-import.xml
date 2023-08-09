@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>该Demo解释如何实现容器级别的继承关系</description>
+    <!--导入其他容器 -->
+    <import resource="spring-context.xml"/>
+
+    <bean id="localHost" class="java.net.InetAddress" factory-method="getLocalHost"/>
+    <bean id="now" class="java.time.LocalDateTime" factory-method="now" scope="prototype"/>
+
+    <bean id="subTestBean" class="cn.argento.askia.beans.DerivedTestBean">
+        <property name="testBean" ref="inheritedTestBean"/>
+    </bean>
+
+    <!-- 上级容器无法引用下级容器 -->
+<!--    <bean id="subTestBean2" class="cn.argento.askia.beans.DerivedTestBean">-->
+<!--        <property name="testBean" ref="testBean"/>-->
+<!--    </bean>-->
+
+</beans>
