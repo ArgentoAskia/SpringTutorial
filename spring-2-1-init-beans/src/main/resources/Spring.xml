@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--   spring 原始方式xml创建对象  -->
+    <!-- 默认构造器创建 -->
+    <bean id="userByConstructor" class="cn.argentoaskia.beans.User"/>
+    <!--
+        静态工厂创建对象:
+            class：填写的是工厂类的类名
+            factory-method：工厂方法
+    -->
+    <bean id="userByStaticFactory" class="cn.argentoaskia.factory.UserStaticFactory" factory-method="createDefaultUser"/>
+
+    <!-- 对象工厂创建对象：
+            factory-bean：工厂对象的id值
+            factory-method：工厂方法
+            不需要指定Class对象
+      -->
+    <bean id="userObjectFactory" class="cn.argentoaskia.factory.UserObjectFactory"/>
+    <bean id="userByObjectFactory" factory-bean="userObjectFactory" factory-method="createUser"/>
+
+
+    <!--   spring 2.5新增，注解方式创建对象  -->
+    <!-- 往容器内注入注解处理器用来处理支持注解的方式初始化对象 -->
+    <context:annotation-config/>
+    <!-- 扫包操作，用于扫描所有的@Component注解并创建对象 -->
+    <!-- 注解方式默认一个类创建一个实例，无法通过标记多个@Component的方式创建多个对象 -->
+    <!-- 相当于通过默认构造器创建方式，在不指定依赖注入的前提下 -->
+    <!-- 使用@Component的前提是自己有源代码 -->
+    <context:component-scan base-package="cn.argentoaskia.beans"/>
+</beans>
