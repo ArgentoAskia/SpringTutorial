@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>SpringProject2</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>spring-1-simple-start</module>
+        <module>spring-2-1-init-beans</module>
+        <module>spring-4-1-xml-autowired</module>
+        <module>spring-2-2-bean-name</module>
+        <module>spring-2-3-scope</module>
+        <module>spring-3-1-context-import</module>
+        <module>spring-3-2-context-api</module>
+        <module>spring-4-2-annotation-autowired</module>
+        <module>spring-2-4-bean-lifecycle</module>
+        <module>spring-4-3-xml-Dependency-Injection</module>
+        <module>spring-4-4-annotation-Dependency-Injection</module>
+        <module>spring-4-5-method-injection</module>
+        <module>spring-2-5-bean-aware</module>
+        <module>spring-2-6-bean-inheritance</module>
+        <module>spring-5-1-bean-post-processor</module>
+        <module>spring-6-1-annotations</module>
+        <module>spring-6-2-java-config</module>
+        <module>spring-7-1-environment</module>
+    </modules>
+    <properties>
+        <java.version>8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <spring.version>5.3.15</spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
