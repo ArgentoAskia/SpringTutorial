@@ -27,6 +27,7 @@
         <module>spring-6-1-annotations</module>
         <module>spring-6-2-java-config</module>
         <module>spring-7-1-environment</module>
+        <module>spring-5-2-properties-resource</module>
     </modules>
     <properties>
         <java.version>8</java.version>
