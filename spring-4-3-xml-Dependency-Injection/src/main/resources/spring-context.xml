@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/mvc
+         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 手动依赖注入一般有两种方法：基于构造器注入和基于Setter方法注入 -->
+    <bean id="localhost" name="local" class="cn.argentoaskia.beans.IP"/>
+    <!-- 1.基于构造器的手动依赖注入 -->
+    <bean id="askia-ip" name="askia" class="cn.argentoaskia.beans.IP">
+        <constructor-arg name="host" value="xiaohong's PC"/>
+        <constructor-arg name="ipStr">
+            <value>192.168.10.125</value>
+        </constructor-arg>
+        <constructor-arg name="mark" value="255.255.255.0"/>
+    </bean>
+    <bean id="askia-friend-ip-1" name="askia-friend-1;M1ngM1ng" class="cn.argentoaskia.beans.IP">
+        <constructor-arg name="host" value="M1ngM1ng"/>
+        <constructor-arg name="ipStr" value="192.168.2.230"/>
+        <constructor-arg name="mark" value="255.255.254.0"/>
+    </bean>
+    <bean id="askia-friend-ip-2" name="askia-friend-2;xiaoming" class="cn.argentoaskia.beans.IP">
+        <constructor-arg name="host" value="xiaoming"/>
+        <constructor-arg name="ipStr" value="192.168.2.232"/>
+        <constructor-arg name="mark" value="255.255.254.0"/>
+    </bean>
+    <bean id="askia-friend-ip-3" name="askia-friend-3;xiaohong" class="cn.argentoaskia.beans.IP">
+        <constructor-arg name="host" value="xiaohong"/>
+        <constructor-arg name="ipStr" value="192.168.2.233"/>
+        <constructor-arg name="mark" value="255.255.254.0"/>
+    </bean>
+
+    <!-- 2.基于Setter的手动依赖注入 -->
+    <bean id="user-askia"
+          class="cn.argentoaskia.beans.User"
+          name="userAskia;argentoaskia">
+        <!-- 注入基本类型、包装器类、String时采用的方式 -->
+        <property name="address" value="USA California"/>
+        <property name="age" value="25"/>
+        <property name="weight" value="2.5"/>
+        <property name="name" value="askia"/>
+        <!-- 注入引用类型时采用的方式 -->
+        <property name="ip" ref="askia-ip"/>
+        <!-- 注入数组时的方式, 可以指定value-type来指定类型 -->
+        <property name="friendlyIps">
+            <array>
+                <ref bean="localhost"/>
+                <ref bean="askia-friend-ip-1"/>
+                <ref bean="askia-friend-ip-2"/>
+                <ref bean="askia-friend-ip-3"/>
+                <!-- 匿名bean -->
+                <bean class="cn.argentoaskia.beans.IP">
+                    <property name="host" value="unknown"/>
+                    <property name="ipStr" value="unknown"/>
+                    <property name="mark" value="unknown"/>
+                </bean>
+                <!-- 插入null -->
+                <null/>
+            </array>
+        </property>
+        <!-- 注入列表 -->
+        <property name="friends">
+            <list>
+                <value>xiaoming</value>
+                <value>M1ngM1ng</value>
+                <value>xiaohong</value>
+                <value>localhost</value>
+            </list>
+        </property>
+        <!-- 注入Set -->
+        <property name="geos">
+            <set value-type="java.lang.Float">
+                <value>2.3</value>
+                <value>1.5</value>
+                <value>3.2</value>
+                <value>9.5</value>
+            </set>
+        </property>
+        <!-- 注入map -->
+        <property name="mapperNames">
+            <map key-type="java.lang.String" value-type="java.lang.Object">
+                <entry key="none" value="unknown"/>
+                <entry key="default-ip" value-ref="localhost"/>
+                <entry key="name-counts">
+                    <value>256</value>
+                </entry>
+            </map>
+        </property>
+        <!-- 注入properties -->
+        <property name="backupsProperties">
+            <props>
+                <prop key="key1">value1</prop>
+                <prop key="key2">value2</prop>
+                <prop key="key3">value3</prop>
+                <prop key="key4">value4</prop>
+                <prop key="key5">value5</prop>
+                <prop key="key6">value6</prop>
+            </props>
+        </property>
+        <!-- 多重嵌套的类型，如：Set<Double[]> -->
+        <property name="lastGeos">
+            <!-- 指定value-type，限定输入类型，否则默认就是Object -->
+            <set>
+                <array value-type="java.lang.Double">
+                    <value>103.5</value>
+                    <value>103.7</value>
+                    <value>118.7</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>120.3</value>
+                    <value>120.9</value>
+                    <value>138.9</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>526.8</value>
+                    <value>510.8</value>
+                    <value>485.8</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>856.5</value>
+                    <value>359.5</value>
+                    <value>783.1</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>521.5</value>
+                    <value>395.8</value>
+                    <value>875.2</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>56.2</value>
+                    <value>51.2</value>
+                </array>
+            </set>
+        </property>
+        <!-- 多重嵌套的类型，如：Map<String, Double[]> -->
+        <property name="lastGeosWithName">
+            <!-- 表示数组可增加[] -->
+            <map key-type="java.lang.String" value-type="java.lang.Double[]">
+                <entry key="云南">
+                    <set>
+                        <value>102.71642</value>
+                        <value>25.051562</value>
+                    </set>
+                </entry>
+                <entry key="北京">
+                    <set>
+                        <value>116.413387</value>
+                        <value>39.910924</value>
+                    </set>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+    <!-- 3.基于p（property）命名空间的Setter注入,建议只用在字面值-->
+    <bean id="user-askia-p-namespace"
+          class="cn.argentoaskia.beans.User"
+          p:address="广东省" p:age="30">
+    </bean>
+
+    <!-- 4.基于c（Constructor）命名空间的构造器注入，建议只用在字面值 -->
+    <bean id="ip" class="cn.argentoaskia.beans.IP"
+          c:host="127.0.0.1"
+          c:ipStr="127.0.0.1"
+          c:mark="255.255.255.0">
+
+    </bean>
+
+
+    <!-- @DependOn-->
+    <!-- 5.depend-on强制决定bean之间的依赖关系，多个可以使用;,或者空格分开 -->
+    <!-- 如果被depend-on的bean不存在，则会抛出异常 -->
+    <!-- 销毁bean的时候，会先销毁user-askia-depend-on，再销毁被依赖的bean：localhost和askia-ip-->
+    <bean id="user-askia-depend-on"
+          class="cn.argentoaskia.beans.User" depends-on="localhost;askia-ip">
+        <!-- 注入基本类型、包装器类、String时采用的方式 -->
+        <property name="address" value="USA California"/>
+        <property name="age" value="25"/>
+        <property name="weight" value="2.5"/>
+        <property name="name" value="askia"/>
+        <!-- 注入引用类型时采用的方式 -->
+        <property name="ip" ref="askia-ip"/>
+        <!-- 注入数组时的方式, 可以指定value-type来指定类型 -->
+        <property name="friendlyIps">
+            <array>
+                <ref bean="localhost"/>
+                <ref bean="askia-friend-ip-1"/>
+                <ref bean="askia-friend-ip-2"/>
+                <ref bean="askia-friend-ip-3"/>
+                <!-- 匿名bean -->
+                <bean class="cn.argentoaskia.beans.IP">
+                    <property name="host" value="unknown"/>
+                    <property name="ipStr" value="unknown"/>
+                    <property name="mark" value="unknown"/>
+                </bean>
+                <!-- 插入null -->
+                <null/>
+            </array>
+        </property>
+        <!-- 注入列表 -->
+        <property name="friends">
+            <list>
+                <value>xiaoming</value>
+                <value>M1ngM1ng</value>
+                <value>xiaohong</value>
+                <value>localhost</value>
+            </list>
+        </property>
+        <!-- 注入Set -->
+        <property name="geos">
+            <set value-type="java.lang.Float">
+                <value>2.3</value>
+                <value>1.5</value>
+                <value>3.2</value>
+                <value>9.5</value>
+            </set>
+        </property>
+        <!-- 注入map -->
+        <property name="mapperNames">
+            <map key-type="java.lang.String" value-type="java.lang.Object">
+                <entry key="none" value="unknown"/>
+                <entry key="default-ip" value-ref="localhost"/>
+                <entry key="name-counts">
+                    <value>256</value>
+                </entry>
+            </map>
+        </property>
+        <!-- 注入properties -->
+        <property name="backupsProperties">
+            <props>
+                <prop key="key1">value1</prop>
+                <prop key="key2">value2</prop>
+                <prop key="key3">value3</prop>
+                <prop key="key4">value4</prop>
+                <prop key="key5">value5</prop>
+                <prop key="key6">value6</prop>
+            </props>
+        </property>
+        <!-- 多重嵌套的类型，如：Set<Double[]> -->
+        <property name="lastGeos">
+            <!-- 指定value-type，限定输入类型，否则默认就是Object -->
+            <set>
+                <array value-type="java.lang.Double">
+                    <value>103.5</value>
+                    <value>103.7</value>
+                    <value>118.7</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>120.3</value>
+                    <value>120.9</value>
+                    <value>138.9</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>526.8</value>
+                    <value>510.8</value>
+                    <value>485.8</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>856.5</value>
+                    <value>359.5</value>
+                    <value>783.1</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>521.5</value>
+                    <value>395.8</value>
+                    <value>875.2</value>
+                </array>
+                <array value-type="java.lang.Double">
+                    <value>56.2</value>
+                    <value>51.2</value>
+                </array>
+            </set>
+        </property>
+        <!-- 多重嵌套的类型，如：Map<String, Double[]> -->
+        <property name="lastGeosWithName">
+            <!-- 表示数组可增加[] -->
+            <map key-type="java.lang.String" value-type="java.lang.Double[]">
+                <entry key="云南">
+                    <set>
+                        <value>102.71642</value>
+                        <value>25.051562</value>
+                    </set>
+                </entry>
+                <entry key="北京">
+                    <set>
+                        <value>116.413387</value>
+                        <value>39.910924</value>
+                    </set>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- @Lazy-->
+    <!--
+        6.lazy init bean，懒加载bean，看下面的代码
+        理论上spring在预创建bean的时候，会按照xml的解析顺序来创建，然后才回去处理bean和bean之间的依赖关系
+        因此date1的时间会在date2之前，date2会在date3和date4后面
+        但现在问题就在于date3是一个懒加载的bean，所谓懒加载的意思就是不参与Spring的预创建，只会在真正使用到bean的时候才会给创建
+        因此下面的代码将会产生结果：date1早于date2早于date4早于date3，请看测试代码
+    -->
+    <bean id="date1" class="java.time.LocalDateTime" factory-method="now"/>
+
+    <bean id="date2" class="java.time.LocalDateTime" factory-method="now"/>
+
+    <bean id="date3" class="java.time.LocalDateTime" factory-method="now" lazy-init="true"/>
+
+    <bean id="date4" class="java.time.LocalDateTime" factory-method="now"/>
+
+</beans>
