@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+        1. 不指定id（id代表每个对象的唯一名称，相当于身份证一样重要）的匿名bean
+        默认名称：cn.argentoaskia.bean.User2#X，X代表数字，从0开始，这个数字根据xml中bean标签的编写的前后顺序来生成
+        这种匿名bean，你仍然可以通过ApplicationContext的getBean获取，
+        但是无法用于依赖注入的ref属性
+    -->
+    <bean class="cn.argentoaskia.bean.User2">
+        <property name="address" value="江门市"/>
+        <property name="age" value="25"/>
+        <property name="birthday">
+            <bean class="java.util.Date"/>
+        </property>
+        <property name="id" value="3"/>
+        <property name="name" value="Askia2"/>
+        <property name="upload">
+            <bean class="java.time.LocalDateTime" factory-method="now"/>
+        </property>
+    </bean>
+    <bean class="cn.argentoaskia.bean.User2"/>
+
+    <!--
+        2. 给bean起多个名字，name属性，多个名称用，空格或者;(推荐)来分割
+    -->
+    <bean id="user2" name="user22;askia" class="cn.argentoaskia.bean.User2">
+        <property name="address" value="肇庆市"/>
+        <property name="age" value="23"/>
+        <property name="birthday">
+            <bean class="java.util.Date"/>
+        </property>
+        <property name="id" value="2"/>
+        <property name="name" value="Askia"/>
+        <property name="upload">
+            <bean class="java.time.LocalDateTime" factory-method="now"/>
+        </property>
+    </bean>
+
+    <!--
+        3. 通过alias标签实现起别名！
+    -->
+    <bean id="user" class="cn.argentoaskia.bean.User2"/>
+    <alias name="user" alias="defaultUser"/>
+
+</beans>
