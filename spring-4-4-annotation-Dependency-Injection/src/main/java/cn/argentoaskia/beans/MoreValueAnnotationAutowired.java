@@ -191,6 +191,11 @@ public class MoreValueAnnotationAutowired {
     private Long[] dates;
 
 
+    // 自定义ConversionService转换器实现@Value
+    @Value("command")
+    private Generics<String> stringGenerics;
+
+
     private String constructor;
 
     @Value("field inject")
@@ -333,6 +338,7 @@ public class MoreValueAnnotationAutowired {
         sb.append(", constructor='").append(constructor).append('\'');
         sb.append(", field='").append(field).append('\'');
         sb.append(", setter='").append(setter).append('\'');
+        sb.append(", stringGenerics='").append(stringGenerics).append('\'');
         sb.append('}');
         return sb.toString();
     }

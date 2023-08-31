@@ -1,5 +1,6 @@
 package cn.argentoaskia.beans;
 
+// 静态方法+@Bean
 public class Generics<T> {
 
     private T data;

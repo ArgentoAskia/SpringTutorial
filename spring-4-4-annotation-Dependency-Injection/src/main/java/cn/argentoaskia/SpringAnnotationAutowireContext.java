@@ -2,6 +2,7 @@ package cn.argentoaskia;
 
 import cn.argentoaskia.beans.Fruit;
 import cn.argentoaskia.beans.Generics;
+import cn.argentoaskia.beans.GenericsConversion;
 import cn.argentoaskia.beans.IP;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.format.support.DefaultFormattingConversionService;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -20,6 +23,15 @@ import java.util.*;
 @ComponentScan
 public class SpringAnnotationAutowireContext implements ApplicationContextAware {
 
+
+    @Bean
+    public ConversionService conversionService(){
+        DefaultFormattingConversionService defaultFormattingConversionService
+                = new DefaultFormattingConversionService();
+        final GenericsConversion genericsConversion = new GenericsConversion();
+        defaultFormattingConversionService.addConverter(genericsConversion);
+        return defaultFormattingConversionService;
+    }
 
     private ApplicationContext applicationContext;
 
