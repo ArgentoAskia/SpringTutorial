@@ -29,6 +29,7 @@
         <module>spring-7-1-environment</module>
         <module>spring-5-2-properties-resource</module>
         <module>spring-8-1-spEL</module>
+        <module>spring-7-2-profile</module>
     </modules>
     <properties>
         <java.version>8</java.version>
