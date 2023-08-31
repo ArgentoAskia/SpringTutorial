@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+// ref;https://zhuanlan.zhihu.com/p/616480632
 // Full模式下我们只看到输出了一次信息（初始化InetAddress时调用了一次方法）
 // 在初始化IP类的时候，不会输出信息，因为inetAddress2()被代理了
 // 调用该方法不会执行方法体，而是直接从容器中拿到之前创建的inetAddress2()对象
