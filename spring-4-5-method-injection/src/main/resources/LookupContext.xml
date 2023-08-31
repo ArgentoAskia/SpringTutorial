@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="command" class="cn.argento.askia.beans.Command" scope="prototype">
+        <property name="status" value="123"/>
+        <property name="uuid" value="123"/>
+    </bean>
+    <bean id="commandManager" class="cn.argento.askia.beans.CommandManager">
+        <lookup-method name="createCommand" bean="command"/>
+    </bean>
+</beans>
