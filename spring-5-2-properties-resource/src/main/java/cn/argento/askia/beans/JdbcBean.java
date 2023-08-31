@@ -23,8 +23,10 @@ public class JdbcBean {
     private String className;
     @Value("${username}")
     private String username;
-    @Autowired
-    @Qualifier("uri2")
+    // 可以直接往URI、URL里面注入基本值！
+//    @Autowired
+//    @Qualifier("uri2")
+    @Value("${url}")
     private URI url;
     @Value("${password}")
     private String password;
