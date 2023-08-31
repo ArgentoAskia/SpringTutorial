@@ -1,6 +1,6 @@
-package cn.argentoaskia.beans.multicallback;
+package cn.argentoaskia.multicallback;
 
-import cn.argentoaskia.beans.bean.User3;
+import cn.argentoaskia.bean.User3;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;

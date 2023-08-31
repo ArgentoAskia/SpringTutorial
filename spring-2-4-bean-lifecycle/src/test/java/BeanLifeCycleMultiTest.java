@@ -1,4 +1,4 @@
-import cn.argentoaskia.beans.bean.User3;
+import cn.argentoaskia.bean.User3;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

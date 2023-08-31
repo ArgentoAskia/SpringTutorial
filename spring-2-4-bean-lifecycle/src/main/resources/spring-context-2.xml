@@ -8,5 +8,5 @@
        default-destroy-method="shutdown">
 
     <context:annotation-config/>
-    <context:component-scan base-package="cn.argentoaskia.beans.multicallback"/>
+    <context:component-scan base-package="cn.argentoaskia.multicallback"/>
 </beans>

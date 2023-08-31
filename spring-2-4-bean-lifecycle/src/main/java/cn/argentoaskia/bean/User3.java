@@ -1,4 +1,4 @@
-package cn.argentoaskia.beans.bean;
+package cn.argentoaskia.bean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

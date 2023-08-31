@@ -13,7 +13,7 @@
           后期bean标签中可以使用init-method和destroy-method覆盖这个方法,但是注解的形式却不能做到覆盖
     -->
     <!-- 1.采用LifeCycle接口管理bean的初始化和销毁 -->
-    <bean id="user3_1" class="cn.argentoaskia.beans.callback.User3LifeCycleInterfaceCallback">
+    <bean id="user3_1" class="cn.argentoaskia.callback.User3LifeCycleInterfaceCallback">
         <property name="address" value="广州市"/>
         <property name="age" value="30"/>
         <property name="birthday">
@@ -27,7 +27,7 @@
     </bean>
 
     <!-- 2.采用XML-init-method属性和destroy-method属性管理bean的初始化和销毁 -->
-    <bean id="user3_2" class="cn.argentoaskia.beans.callback.User3XMLLifeCycleCallback"
+    <bean id="user3_2" class="cn.argentoaskia.callback.User3XMLLifeCycleCallback"
     init-method="init" destroy-method="destroy">
         <property name="address" value="江门市"/>
         <property name="age" value="23"/>
@@ -43,11 +43,11 @@
 
     <!-- 3.采用注解形式管理bean的初始化和销毁，注意因为是注解形式，需要开启注解支持和组件扫描 -->
     <context:annotation-config/>
-    <context:component-scan base-package="cn.argentoaskia.beans.callback"/>
+    <context:component-scan base-package="cn.argentoaskia.callback"/>
 
 
     <!-- 4. AutoCloseable | Closeable的写法 -->
-    <bean id="user3_4" class="cn.argentoaskia.beans.callback.User3AutoCloseXMLLifeCycleCallback"
+    <bean id="user3_4" class="cn.argentoaskia.callback.User3AutoCloseXMLLifeCycleCallback"
     init-method="init" destroy-method="(inferred)">
         <property name="address" value="中山市"/>
         <property name="age" value="24"/>

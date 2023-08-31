@@ -1,7 +1,6 @@
-package cn.argentoaskia.beans.callback;
+package cn.argentoaskia.callback;
 
-import cn.argentoaskia.beans.bean.User3;
-import org.springframework.core.convert.ConversionService;
+import cn.argentoaskia.bean.User3;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

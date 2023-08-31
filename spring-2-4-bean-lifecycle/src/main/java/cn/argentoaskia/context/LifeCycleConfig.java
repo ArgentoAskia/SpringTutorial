@@ -1,7 +1,7 @@
 package cn.argentoaskia.context;
 
 
-import cn.argentoaskia.beans.bean.User3;
+import cn.argentoaskia.bean.User3;
 import org.springframework.context.LifecycleProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
