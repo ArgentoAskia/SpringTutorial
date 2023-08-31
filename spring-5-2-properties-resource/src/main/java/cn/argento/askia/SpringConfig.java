@@ -10,6 +10,12 @@ import org.springframework.core.env.Environment;
 
 import java.net.URI;
 
+// 更多的注入方式参考文章：
+// https://blog.csdn.net/qq_37287018/article/details/106795987
+// https://blog.csdn.net/qq_35347328/article/details/123205062
+// https://zhuanlan.zhihu.com/p/420351920?utm_id=0
+// https://blog.csdn.net/weixin_45941064/article/details/129875638
+// https://blog.csdn.net/qq_45674493/article/details/127937696
 @Configuration
 @ComponentScan
 @PropertySource(value = "classpath:log4j.properties")

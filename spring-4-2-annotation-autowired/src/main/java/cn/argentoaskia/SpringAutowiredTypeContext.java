@@ -13,6 +13,7 @@ import org.springframework.context.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+// ref:https://blog.csdn.net/qq_40239169/article/details/125601943
 /**
  * 注解形式自动注入方法演示（byName、byType）
  * {@code @AutoWire}默认就是byType注入！
