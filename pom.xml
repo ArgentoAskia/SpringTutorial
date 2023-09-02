@@ -30,6 +30,16 @@
         <module>spring-5-2-properties-resource</module>
         <module>spring-8-1-spEL</module>
         <module>spring-7-2-profile</module>
+        <module>spring-7-3-resources</module>
+        <module>spring-7-4-validation</module>
+        <module>spring-7-5-data-binding</module>
+        <module>spring-7-6-type-conversion</module>
+        <module>spring-8-2-xml-aop</module>
+        <module>spring-8-3-annotation-aop</module>
+        <module>spring-8-4-aop-apis</module>
+        <module>spring-9-1-common-lang</module>
+        <module>spring-9-2-codecs</module>
+        <module>spring-10-1-aot-spring6</module>
     </modules>
     <properties>
         <java.version>8</java.version>
