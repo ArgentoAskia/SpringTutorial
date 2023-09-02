@@ -1,8 +1,7 @@
-package cn.argento.askia.config;
+package cn.argento.askia.modes.config;
 
 
-import cn.argento.askia.beans.IP;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.argento.askia.modes.beans.IP;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;

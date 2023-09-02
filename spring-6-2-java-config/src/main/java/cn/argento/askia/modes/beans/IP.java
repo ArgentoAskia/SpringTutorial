@@ -1,4 +1,4 @@
-package cn.argento.askia.beans;
+package cn.argento.askia.modes.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

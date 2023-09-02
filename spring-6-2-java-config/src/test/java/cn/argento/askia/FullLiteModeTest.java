@@ -1,9 +1,9 @@
 package cn.argento.askia;
 
 
-import cn.argento.askia.beans.IP;
-import cn.argento.askia.config.FullModeConfig;
-import cn.argento.askia.config.LiteModeConfig;
+import cn.argento.askia.modes.beans.IP;
+import cn.argento.askia.modes.config.FullModeConfig;
+import cn.argento.askia.modes.config.LiteModeConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
